@@ -10,6 +10,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://*.workers.dev; manifest-src 'self'; base-uri 'none'; form-action 'none'">
 <link rel="stylesheet" href="style.css">
 </head><body>
 <header><div class="logo">PIXELPROTECH <i>/ ROUTE</i></div>
@@ -19,24 +20,25 @@
 <main>
 <section id="v-traveller">
 <div class="hero"><h1>PIXELROUTE</h1><p>Know the road before you travel.</p>
-<div class="ask"><input id="q" placeholder="Where are you going, and how would you like to travel?" autocomplete="off"><button id="go">ASK</button></div>
+<div class="ask"><input id="q" aria-label="Where are you going, and how would you like to travel?" placeholder="Where are you going, and how would you like to travel?" autocomplete="off"><button id="go">ASK</button></div>
 <div class="chips"><button data-q="minibus taxi from Pretoria to Durban">MINIBUS</button><button data-q="long-distance bus from Pretoria to Durban">LONG-DISTANCE BUS</button><button data-q="flights from Johannesburg to Cape Town">AIR TRAVEL</button><button data-q="road conditions on the N3 Pretoria to Durban">ROAD CONDITIONS</button><button data-q="is it safe to arrive in Durban at night, Pretoria to Durban">JOURNEY SAFETY</button></div>
 <button class="ghost" id="acc">RUN ACCEPTANCE TEST: PRETORIA → DURBAN</button></div>
-<div id="out"></div>
+<div id="out" aria-live="polite"></div>
 <div class="sec"><h2>LIVE INTELLIGENCE OVERVIEW — SOURCE AVAILABILITY &amp; FRESHNESS</h2><div class="wrap" id="ov"></div></div>
 </section>
 <section id="v-saved" class="hide"><div class="sec"><h2>SAVED JOURNEYS — OFFLINE SNAPSHOTS</h2><p class="note">Stored in this browser only. Each snapshot shows when it was saved; it is never live.</p><div id="sv"></div></div></section>
 <section id="v-command" class="hide">
-<form class="f" id="tf" onsubmit="return false"><input id="tok" type="password" autocomplete="off" placeholder="Admin token (this session only)"></form>
+<form class="f" id="tf"><input id="tok" aria-label="Admin token" type="password" autocomplete="off" placeholder="Admin token (this session only)"></form>
 <div class="banner">PROTOTYPE: Command runs client-side with no authentication. Production requires FastAPI server auth, RBAC, and server-held secrets — never browser-held keys.</div>
 <div class="grid" id="kp"></div>
 <div class="sec"><h2>SOURCE CONTROL CENTRE</h2><div class="wrap" id="src"></div></div>
 <div class="sec"><h2>FAREWATCH — SUBMIT FARE REPORT</h2>
-<form class="f" id="ff"><select name="mode"><option value="minibus">minibus</option><option value="bus">bus</option><option value="air">air</option></select>
-<select name="from" class="cs"></select><select name="to" class="cs"></select>
-<input name="op" placeholder="Operator / association" required><input name="price" type="number" min="1" placeholder="Fare (ZAR)" required><input name="src" placeholder="Source (e.g. rank visit 2026-11-08)" required><button>SUBMIT</button></form>
-<p class="note">Submissions enter as RECENT REPORT. Verify them below. Same operator, same route, different price → DISPUTED, with both shown to travellers.</p>
-<div class="wrap" id="fl"></div></div>
+<form class="f" id="ff"><select name="mode" aria-label="Mode"><option value="minibus">minibus</option><option value="bus">bus</option><option value="air">air</option></select>
+<select name="from" class="cs" aria-label="Origin"></select><select name="to" class="cs" aria-label="Destination"></select>
+<input name="op" aria-label="Operator" placeholder="Operator / association" required><input name="price" aria-label="Fare in rand" type="number" min="1" placeholder="Fare (ZAR)" required><input name="src" aria-label="Source" placeholder="Source (e.g. rank visit 2026-11-08)" required><button>SUBMIT</button></form>
+<p id="fe" class="miss" role="alert"></p>
+<p class="note">Server mode: submissions enter as RECENT REPORT and an admin verifies them. Device mode (no API_BASE): entries stay on this device only, are labelled DEVICE ONLY and cannot be verified. Same operator, same route, different price → DISPUTED, with both shown to travellers.</p>
+<div class="wrap" id="fl" tabindex="0" role="region" aria-label="Fare records"></div></div>
 <div class="sec"><h2>AI REASONING ENGINE</h2><div class="wrap" id="ai"></div></div>
 <div class="sec"><h2>QUERY LOG (AI RESPONSE REVIEW)</h2><div class="wrap" id="lg"></div></div>
 <div class="sec"><h2>MAP — ROUTEVAULT PLACES</h2><div id="cm"></div></div>

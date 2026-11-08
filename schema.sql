@@ -3,11 +3,12 @@ CREATE TABLE IF NOT EXISTS sources(
   enabled INTEGER NOT NULL DEFAULT 0, interval_s INTEGER NOT NULL DEFAULT 3600,
   last_success INTEGER, last_failure INTEGER, last_error TEXT, note TEXT);
 CREATE TABLE IF NOT EXISTS fares(
-  id TEXT PRIMARY KEY, mode TEXT NOT NULL, origin TEXT NOT NULL, destination TEXT NOT NULL,
-  operator TEXT NOT NULL, price_zar REAL NOT NULL, source TEXT NOT NULL,
+  id TEXT PRIMARY KEY, mode TEXT NOT NULL CHECK(mode IN ('minibus','bus','air')), origin TEXT NOT NULL, destination TEXT NOT NULL,
+  operator TEXT NOT NULL, price_zar REAL NOT NULL CHECK(price_zar>0 AND price_zar<=100000), source TEXT NOT NULL,
   status TEXT NOT NULL DEFAULT 'RECENT REPORT',
   collected_at INTEGER NOT NULL, verified_at INTEGER, expires_at INTEGER NOT NULL);
 CREATE INDEX IF NOT EXISTS fares_route ON fares(origin,destination,mode);
+CREATE INDEX IF NOT EXISTS fares_exp ON fares(expires_at);
 CREATE TABLE IF NOT EXISTS fare_history(
   fare_id TEXT, price_zar REAL, at INTEGER);
 CREATE TABLE IF NOT EXISTS incidents(

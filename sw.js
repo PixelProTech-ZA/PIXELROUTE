@@ -1,5 +1,6 @@
-// PixelRoute service worker. Shell: cache-first. API: network-first; cached API data is flagged from_cache.
-const V = "pixelroute-v1";
+// PixelRoute service worker v2. Shell: network-first (always fresh when online), cache fallback offline.
+// API GETs: network-first; offline replay is flagged from_cache so the app can show it as historical.
+const V = "pixelroute-v2";
 const SHELL = ["./", "index.html", "style.css", "app.js", "config.js", "manifest.webmanifest", "icon-192.png", "icon-512.png"];
 self.addEventListener("install", e => e.waitUntil(caches.open(V).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())));
 self.addEventListener("activate", e => e.waitUntil(caches.keys().then(k => Promise.all(k.filter(x => x !== V).map(x => caches.delete(x)))).then(() => self.clients.claim())));
@@ -15,5 +16,6 @@ self.addEventListener("fetch", e => {
       }));
     return;
   }
-  e.respondWith(caches.match(r).then(m => m || fetch(r).then(res => { if (res.ok && u.origin === location.origin) { const cp = res.clone(); caches.open(V).then(c => c.put(r, cp)); } return res; }).catch(() => caches.match("index.html"))));
+  e.respondWith(fetch(r, { cache: "no-cache" }).then(res => { if (res.ok && u.origin === location.origin) { const cp = res.clone(); caches.open(V).then(c => c.put(r, cp)); } return res; })
+    .catch(() => caches.match(r).then(m => m || caches.match("index.html"))));
 });

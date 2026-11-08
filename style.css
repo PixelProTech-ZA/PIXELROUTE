@@ -55,3 +55,6 @@ input,select,button{font-size:16px}
  footer{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
 }
 @media (display-mode:standalone){header{padding-top:calc(14px + env(safe-area-inset-top,0px))}}
+
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
