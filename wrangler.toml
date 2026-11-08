@@ -1,0 +1,16 @@
+name = "roadpulse-api"
+main = "worker.js"
+compatibility_date = "2026-11-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "roadpulse"
+database_id = "REPLACE_WITH_ID_FROM_wrangler_d1_create"
+
+[triggers]
+crons = ["*/5 * * * *"]
+
+[vars]
+# Origin only, no path, e.g. https://pixelprotech-za.github.io
+ALLOWED_ORIGIN = "https://REPLACE-WITH-YOUR-ORIGIN"
+# Secret: wrangler secret put ADMIN_TOKEN

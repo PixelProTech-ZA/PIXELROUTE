@@ -1,0 +1,57 @@
+:root{--bg:#07070a;--s1:#0d0d10;--s2:#15141a;--line:#26232f;--tx:#f1eefa;--mut:#8f8aa6;--gold:#00d4aa;--amb:#a98bff;--red:#ff5d6c;--ok:#00d4aa;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f6f4fb;--s1:#ffffff;--s2:#ece8f6;--line:#d3cde4;--tx:#15121f;--mut:#5d5873;--gold:#007a63;--amb:#6a2fd6;--red:#c0283a;--ok:#007a63;color-scheme:light}}
+:root[data-theme="light"]{--bg:#f6f4fb;--s1:#ffffff;--s2:#ece8f6;--line:#d3cde4;--tx:#15121f;--mut:#5d5873;--gold:#007a63;--amb:#6a2fd6;--red:#c0283a;--ok:#007a63;color-scheme:light}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.55 "Helvetica Neue",Arial,"Liberation Sans",sans-serif}
+.mono,h2,h3,.tag,nav a,th,.sys,footer{font-family:"Courier New","Liberation Mono",ui-monospace,monospace}
+h1{font-family:"Helvetica Neue",Arial,"Liberation Sans",sans-serif;font-weight:700}
+h1::after{content:"";display:block;width:56px;height:3px;background:var(--gold);margin:18px auto 0}
+.sys{font-size:10px;letter-spacing:.22em;color:var(--gold);padding:10px 22px;border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap}
+footer{max-width:1040px;margin:0 auto;padding:22px 20px 40px;border-top:1px solid var(--line);font-size:11px;letter-spacing:.14em;color:var(--mut)}footer b{color:var(--tx);font-family:Arial,"Liberation Sans",sans-serif;letter-spacing:.04em}
+header{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
+.logo{font:700 15px Arial,"Liberation Sans",sans-serif;letter-spacing:.18em;color:var(--tx)}.logo i{color:var(--gold);font-style:normal}
+nav a{color:var(--mut);text-decoration:none;font-size:12px;letter-spacing:.14em;margin-left:18px;padding-bottom:4px;border-bottom:1px solid transparent}
+nav a.on{color:var(--gold);border-color:var(--gold)}
+main{max-width:1040px;margin:0 auto;padding:28px 20px 60px}
+.hero{text-align:center;padding:34px 0 22px}
+h1{font-size:clamp(34px,7vw,62px);letter-spacing:.3em;margin:0;color:var(--tx);font-weight:600}
+.hero p{color:var(--gold);font-size:13px;margin:8px 0 26px;letter-spacing:.2em;text-transform:uppercase;font-family:"Courier New","Liberation Mono",monospace}
+.ask{display:flex;gap:8px;max-width:760px;margin:0 auto}
+.ask input{flex:1;background:var(--s1);border:1px solid var(--line);color:var(--tx);padding:16px 18px;font:inherit;border-radius:4px;outline:none}
+.ask input:focus{border-color:var(--gold)}
+button,.btn{background:var(--gold);color:#111;border:0;padding:0 20px;font:600 12px "IBM Plex Mono",monospace;letter-spacing:.12em;border-radius:4px;cursor:pointer;min-height:40px}
+button.ghost{background:transparent;color:var(--gold);border:1px solid var(--line)}button.ghost:hover{border-color:var(--gold)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px 0}
+.chips button{background:transparent;color:var(--mut);border:1px solid var(--line);min-height:34px}
+.chips button:hover{color:var(--gold);border-color:var(--gold)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.card{background:var(--s1);border:1px solid var(--line);border-radius:4px;padding:16px}
+.card h3{margin:0 0 8px;font-size:12px;letter-spacing:.16em;color:var(--gold);font-weight:600}
+.tag{display:inline-block;font-size:10px;letter-spacing:.1em;padding:2px 7px;border:1px solid;border-radius:2px;margin-right:6px}
+.VERIFIED{color:var(--ok)}.RECENT{color:var(--amb)}.ESTIMATE{color:var(--amb)}.STALE,.DISPUTED{color:var(--red)}.UNAVAILABLE{color:var(--mut)}.DEMO{color:var(--gold)}
+dl{margin:8px 0 0;display:grid;grid-template-columns:120px 1fr;gap:4px 10px;font-size:13px}dt{color:var(--mut)}dd{margin:0}
+.sec{margin-top:26px}.sec>h2{font-size:12px;letter-spacing:.2em;color:var(--mut);border-bottom:1px solid var(--line);padding-bottom:6px;font-weight:500}
+.note{color:var(--mut);font-size:13px}.miss{border-left:2px solid var(--amb);padding-left:12px;margin:6px 0;font-size:13px}
+.wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}th{font-size:11px;color:var(--mut);letter-spacing:.1em;font-weight:500}
+svg.map{width:100%;height:auto;background:var(--s1);border:1px solid var(--line);border-radius:4px}
+.kpi{font:600 28px "IBM Plex Mono",monospace;color:var(--tx)}.kpi small{display:block;font-size:10px;color:var(--mut);letter-spacing:.14em;font-weight:400}
+form.f{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+form.f input,form.f select{background:var(--bg);color:var(--tx);border:1px solid var(--line);padding:9px;border-radius:3px;font:inherit}
+.banner{border:1px solid var(--amb);color:var(--amb);padding:8px 12px;font-size:12px;border-radius:3px;margin-bottom:16px}
+.hide{display:none}
+/* ---- mobile / PWA ---- */
+input,select,button{font-size:16px}
+.ask input{min-width:0}
+.hide{display:none!important}
+@media (max-width:640px){
+ header{padding:10px 14px}
+ header nav{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-around;background:var(--bg);border-top:1px solid var(--line);padding:6px 0 calc(6px + env(safe-area-inset-bottom,0px));z-index:9}
+ nav a{margin:0;font-size:11px;letter-spacing:.08em;padding:10px 8px;min-height:44px;display:flex;align-items:center}
+ main{padding:16px 14px calc(84px + env(safe-area-inset-bottom,0px))}
+ .ask{flex-direction:column}.ask button{min-height:48px}
+ .chips{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:6px}.chips button{white-space:nowrap}
+ dl{grid-template-columns:96px 1fr}
+ .hero{padding:18px 0 14px}
+ footer{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+}
+@media (display-mode:standalone){header{padding-top:calc(14px + env(safe-area-inset-top,0px))}}
